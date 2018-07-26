@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/color_f1f1f1"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingLeft="@dimen/dp_10"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#fff"
+        android:paddingRight="@dimen/dp_5"
+        android:paddingLeft="@dimen/dp_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/order_code"
+                android:text="222"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/order_time"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:text="111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/orderRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/delete_order"
+                android:text="取消订单"
+                android:layout_centerVertical="true"
+                android:background="@drawable/rec_with_raduis_stroken66"
+                android:textSize="@dimen/sp_14"
+                android:layout_toLeftOf="@+id/pay"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/color_66"
+                android:paddingRight="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/pay"
+                android:background="@drawable/rec_with_raduis_stroken"
+                android:text="确认接单"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/color_fc81d"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

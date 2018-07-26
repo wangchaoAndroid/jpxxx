@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60">
+
+        <ImageView
+            android:id="@+id/shop_icon"
+            android:layout_width="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="60dp"/>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/shop_icon"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/wallet_type"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/wallet_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textColor="@color/color_66"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_width="120dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/wallet_time"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_5"
+                android:textColor="@color/color_99"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:padding="@dimen/dp_5"
+                android:id="@+id/wallet_money"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_14"
+                android:autoLink="phone"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:background="@color/color_99"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"/>
+
+
+
+</LinearLayout>

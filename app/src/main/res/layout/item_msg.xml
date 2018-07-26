@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:layout_marginLeft="@dimen/dp_5"
+    android:layout_marginRight="@dimen/dp_5"
+    android:background="@drawable/rec_with_raduis_white_fff"
+    >
+
+    <TextView
+        android:id="@+id/tv_msgNum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_msgCreateTime"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="测试单号"
+        />
+
+    <TextView
+        android:id="@+id/tv_msgCreateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintBottom_toBottomOf="@id/tv_msgNum"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_msgNum"
+        tools:text="2018-05-23 10:42"
+        />
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height=".5dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/color_66"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_msgNum"
+        />
+
+    <ImageView
+        android:id="@+id/iv_msgPic"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_margin="@dimen/dp_10"
+        android:src="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        />
+
+    <TextView
+        android:id="@+id/tv_msgTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintLeft_toRightOf="@id/iv_msgPic"
+        app:layout_constraintRight_toLeftOf="@+id/tv_msgType"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        tools:text="测试标题"
+        />
+
+    <TextView
+        android:id="@+id/tv_msgType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        />
+
+    <TextView
+        android:id="@+id/tv_msgBody"
+        android:layout_width="0dp"
+        android:autoLink="phone"
+        android:layout_height="35dp"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_msgPic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_msgTitle"
+        tools:text="测试消息测试消息测试消息测试消息测试消息测试消息测试消息测试消息测试消息" />
+</android.support.constraint.ConstraintLayout>

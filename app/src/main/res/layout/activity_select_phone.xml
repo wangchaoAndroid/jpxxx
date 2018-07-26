@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.jpp.mall.acitivity.SelectPhoneActivity">
+
+    <include layout="@layout/common_title"/>
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_99"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"/>
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:background="@drawable/rec_with_raduis_white_fff"
+        android:layout_marginRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40">
+
+        <ImageView
+            android:id="@+id/ic_search"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/search_et"
+            android:padding="@dimen/dp_5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:hint="@string/select_phone_hint"
+            android:textSize="@dimen/sp_16"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:background="@color/color_99"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/branchRv"
+                android:layout_width="0dp"
+                android:background="@color/color_f1f1f1"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/white"
+                android:id="@+id/categoryRv"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:background="#3f0d0d0d"
+            android:id="@+id/searchRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+</LinearLayout>

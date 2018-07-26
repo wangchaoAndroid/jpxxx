@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.jpp.mall.acitivity.AddBankCardActivity">
+    <include layout="@layout/common_title"/>
+
+    <View
+        android:layout_marginTop="@dimen/dp_3"
+        android:layout_marginBottom="@dimen/dp_3"
+        android:background="@color/color_66"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"/>
+
+
+    <LinearLayout
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingTop="@dimen/dp_5"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:text="@string/user_name"
+                android:textSize="@dimen/sp_16"
+                android:layout_width="80dp"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:paddingLeft="@dimen/dp_5"
+                android:id="@+id/bank_name_et"
+                android:background="@null"
+                android:textSize="@dimen/sp_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:background="@color/color_66"
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"/>
+        <LinearLayout
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingTop="@dimen/dp_5"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:gravity="center_vertical"
+                android:text="@string/id_card_num"
+                android:textSize="@dimen/sp_16"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:paddingLeft="@dimen/dp_5"
+                android:id="@+id/bank_card_num_et"
+                android:inputType="number"
+                android:background="@null"
+                android:textSize="@dimen/sp_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dp_3"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:background="@color/color_66"
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bind_bank_card"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:text="绑定"
+        android:background="@color/color_f1f1f1"
+        android:paddingLeft="@dimen/dp_30"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_30"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>
+

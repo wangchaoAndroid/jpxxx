@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    tools:context="com.jpp.mall.acitivity.WalletActivity">
+
+
+    <include layout="@layout/common_title"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:paddingTop="@dimen/dp_20"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@color/color_5c835f"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150">
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_above="@+id/money"
+                    android:layout_width="wrap_content"
+                    android:text="账户金额（元）"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/money"
+                    android:textColor="@color/color_white"
+                    android:textSize="60sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:paddingRight="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50">
+            <ImageView
+                android:id="@+id/small_wallet"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_withdrawal"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="提现"
+                android:paddingLeft="@dimen/dp_10"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_14"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/small_wallet"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <ImageView
+                android:src="@drawable/ic_more"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+        <View
+            android:background="@color/color_99"
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="钱包记录"
+            android:textColor="#aaa"
+            android:textSize="@dimen/sp_14" />
+        <View
+            android:background="@color/color_99"
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"/>
+
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/rotate_header_grid_view_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:paddingTop="@dimen/dp_10"
+                android:clipToPadding="true"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:id="@+id/wallet_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+    </LinearLayout>
+</LinearLayout>

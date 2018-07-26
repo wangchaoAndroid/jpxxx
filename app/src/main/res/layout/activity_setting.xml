@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_title"/>
+    <View
+        android:background="@color/color_33"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"/>
+
+    <RelativeLayout
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/shop_info"
+                android:text="商铺信息"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/help_center"
+                android:text="帮助中心"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/commoent"
+                android:text="给个好评"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_33"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/service_log"
+                android:text="服务条例"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
+                android:id="@+id/next_look"
+                android:text="下级查看"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
+                android:id="@+id/credibility_querry"
+                android:text="平台公信查询"
+                android:textSize="@dimen/sp_16"
+                android:visibility="gone"
+                android:textColor="@color/color_33"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:text="退出登录"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:background="@drawable/rec_with_raduis10"
+            android:textSize="@dimen/sp_16"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

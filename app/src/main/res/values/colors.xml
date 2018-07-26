@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_fc81d">#FFC81D</color>
+    <color name="color_white">#fff</color>
+    <color name="color_33">#333</color>
+    <color name="color_66">#666</color>
+    <color name="color_26">#262626</color>
+    <color name="color_f1f1f1">#F1F1F1</color>
+    <color name="color_f7b33f">#F7B33F</color>
+    <color name="color_eda23c">#EDA23C</color>
+    <color name="color_5c835f">#5C835F</color>
+    <color name="color_ffc81d">#FFC81D</color>
+    <color name="color_ff2943">#FF2943</color>
+    <color name="color_99">#999999</color>
+    <color name="color_4A90E2">#4A90E2</color>
+
+    <color name="divider">#ffd2d2d2</color>
+    <color name="main_7">#c7a314</color>
+
+    <color name="gray">#808080</color>
+    <color name="lightYellow">#FFFFF0</color>
+    <color name="lightCyan">#E1FFFF</color>
+    <color name="white">#FFFFFF</color>
+
+
+    <color name="activity_bg">#ffe7e7e7</color>
+    <color name="color_text_01">#ffc5c9ce</color>
+    <color name="color_text_03">#ffb1b7be</color>
+    <color name="split_line_color">#ffc9d1d9</color>
+    <color name="split_line_bootom_color">#ffa8adb3</color>
+    <color name="input_stock">#ffbdc7d8</color>
+    <color name="color_text_02">#ff181c20</color>
+    <color name="location_circle_bg">#320483b9</color>
+    <color name="indicator_color">#fffff18f</color>
+    <color name="tabs_click">#ff8a153e</color>
+    <color name="bank_bg01">#ff002142</color>
+    <color name="bank_bg02">#ffe2607b</color>
+    <color name="bank_FF6C6C6C">#FF6C6C6C</color>
+    <color name="text_color_02">#FF6C6C6C</color>
+    <color name="sort_catagory">#FFE0E0E0</color>
+
+
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="liji_c_blue">#26A5FF</color>
+    <color name="liji_material_blue_500">#03a9f4</color>
+    <color name="liji_material_blue_700">#0288d1</color>
+    <color name="liji_material_red_500">#e51c23</color>
+
+
+    <color name="text_color">#FF333333</color>
+
+    <color name="red_normal">#FF0000</color>
+    <color name="red_pressed">#FF6666</color>
+    <color name="green_normal">#37C000</color>
+    <color name="green_pressed">#30A070</color>
+    <color name="purple_normal">#9932CC</color>
+    <color name="purple_pressed">#9F79EE</color>
+    <color name="white_pressed">#FFCFCFCF</color>
+
+    <color name="divider_color">#FFB7B2B2</color>
+    <color name="yellow">#d1c81f</color>
+    <color name="green">#1d8c1d</color>
+    <color name="red">#da0f20</color>
+    <color name="orange">#da490f</color>
+    <color name="color_text_gray">#aca8a8</color>
+</resources>

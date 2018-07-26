@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <RelativeLayout
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_215">
+
+        <!--<RelativeLayout-->
+            <!--android:paddingLeft="@dimen/dp_40"-->
+            <!--android:paddingRight="@dimen/dp_40"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:background="@color/color_eda23c"-->
+            <!--android:layout_height="@dimen/dp_205">-->
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="@dimen/dp_60"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:text="鸡跑跑"-->
+                    <!--android:paddingTop="@dimen/dp_10"-->
+                    <!--android:paddingBottom="@dimen/dp_5"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:text="全国维修提供质保"-->
+                    <!--android:textSize="18sp"-->
+                    <!--android:paddingTop="@dimen/dp_5"-->
+                    <!--android:paddingBottom="@dimen/dp_10"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<ImageView-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginTop="@dimen/dp_60"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:src="@drawable/logo"-->
+                <!--android:layout_height="wrap_content" />-->
+
+        <!--</RelativeLayout>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_185">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:id="@+id/point_view"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_30"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_40"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:background="@drawable/rec_with_raduis_white10"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <TextView
+                android:id="@+id/shop_id"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/color_33"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/invite_code"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:textColor="@color/color_99"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true"
+                android:textSize="@dimen/sp_16"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10"
+        android:id="@+id/main_rv"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60">
+        <TextView
+            android:id="@+id/select_phone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="配件采购"
+            android:drawablePadding="@dimen/dp_10"
+            android:drawableLeft="@drawable/good_icon"
+            android:padding="20dp"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/color_white"
+            android:background="@drawable/main_7"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/cart"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_width="@dimen/dp_60"
+            android:src="@drawable/main_cart"
+            android:background="@null"
+            android:textColor="@color/color_white"
+            android:layout_height="@dimen/dp_60" />
+
+    </LinearLayout>
+
+
+
+
+    <RelativeLayout
+        android:padding="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/vip"
+            android:autoLink="phone"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>
