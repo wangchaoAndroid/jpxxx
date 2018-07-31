@@ -59,6 +59,7 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnNumChang
     public SureOrderModer sureOrderModer;
     private CartAdapter sellerOrderAdapter;
     private List<SureOrderModer.CartOrder> datas = new ArrayList<>();
+    private LinearLayoutManager mLayoutManager;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +87,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnNumChang
         orderRv.setSwipeMenuCreator(mSwipeMenuCreator);
 // 设置菜单Item点击监听。
         orderRv.setSwipeMenuItemClickListener(mMenuItemClickListener);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        orderRv.setLayoutManager(layoutManager);
+        mLayoutManager = new LinearLayoutManager(this);
+        orderRv.setLayoutManager(mLayoutManager);
         sellerOrderAdapter = new CartAdapter(datas,CartActivity.this);
         orderRv.setAdapter(sellerOrderAdapter);
         sellerOrderAdapter.setOnNumChangeListener(CartActivity.this);
@@ -260,12 +261,17 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnNumChang
 
     @OnClick(R.id.back)
     public void back(View view){
+
         finish();
     }
 
+
+    private boolean isSelectAll;
     @OnClick(R.id.right_btn)
     public void selectAll(View view){
-        sellerOrderAdapter.setSelectAll();
+       sellerOrderAdapter.setSelectAll();
+
+
     }
 
     @OnClick(R.id.sumbit_tv)

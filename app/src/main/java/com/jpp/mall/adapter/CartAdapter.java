@@ -6,7 +6,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,9 +15,11 @@ import com.jpp.mall.bean.SureOrderModer;
 import com.jpp.mall.holder.CartHolder;
 import com.jpp.mall.view.AmountView;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2018/4/17.
@@ -28,10 +29,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
     private List<SureOrderModer.CartOrder> datas;
     private Context context;
     private int pos;
-
+    //这个是checkbox的Hashmap集合
+    private final HashMap<Integer, Boolean> map ;
     public CartAdapter(List<SureOrderModer.CartOrder> datas, Context context) {
         this.datas = datas;
+        map = new HashMap<>();
         this.context = context;
+        for (int i = 0; i < 30; i++) {
+            map.put(i, false);
+        }
     }
 
     private Map<Integer,Boolean> selectedGoods = new LinkedHashMap<>();
@@ -43,10 +49,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
     public void setSelectedGoods(Map<Integer, Boolean> selectedGoods) {
         this.selectedGoods = selectedGoods;
     }
-    private  boolean isSelectAll;
     public void setSelectAll(){
-        isSelectAll = !isSelectAll;
+//        isSelectAll = !isSelectAll;
+//        notifyDataSetChanged();
+        Fanxuan();
+    }
+    public boolean checkNeedSelectAll(){
+        Set<Map.Entry<Integer, Boolean>> entrie = map.entrySet();
+        for (Map.Entry<Integer, Boolean> entry : entrie) {
+            if(!entry.getValue()){
+                return true;
+            }
+        }
+        return false;
+    }
+    //反选
+    public void Fanxuan() {
+        boolean b = checkNeedSelectAll();
+        Set<Map.Entry<Integer, Boolean>> entrie = map.entrySet();
+        for (Map.Entry<Integer, Boolean> entry : entrie) {
+            entry.setValue(b);
+        }
+        for (int i = 0; i < getItemCount(); i++) {
+            selectedGoods.put(i,b);
+        }
+        if(mGoodsSelectedListener != null){
+            mGoodsSelectedListener.onGoodsSelectedChange(selectedGoods);
+        }
         notifyDataSetChanged();
+
     }
 
 
@@ -59,6 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
 
     @Override
     public void onBindViewHolder(final CartHolder holder, final int position) {
+        holder.setIsRecyclable(false);
         // holder.branchTv.setText(datas.get(position).brandName);
         SureOrderModer.CartOrder cartOrder = datas.get(position);
         if(cartOrder.isInvalid == 1){//失效
@@ -72,17 +104,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
             holder.good_price.setTextColor(context.getResources().getColor(R.color.color_26));
             holder.mAmountView.setGoods_storage(100000);
             holder.rb_cart.setVisibility(View.VISIBLE);
-            holder.rb_cart.setChecked(isSelectAll);
-        }
-        holder.rb_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                selectedGoods.put(position,isChecked);
-                if(mGoodsSelectedListener != null){
-                    mGoodsSelectedListener.onGoodsSelectedChange(selectedGoods);
+            holder.rb_cart.setChecked(map.get(position));
+//            holder.rb_cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//                }
+//            });
+            holder.rb_cart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedGoods.put(position,!map.get(position));
+                    map.put(position, !map.get(position));
+                    if(mGoodsSelectedListener != null){
+                        mGoodsSelectedListener.onGoodsSelectedChange(selectedGoods);
+                    }
                 }
-            }
-        });
+            });
+        }
+
         holder.good_name.setText("" + datas.get(position).name);
         holder.good_price.setText("￥" + datas.get(position).price);
        // holder.good_desc.setText("" + datas.get(position).desc.get(0));
@@ -126,9 +166,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
 
     @Override
     public int getItemCount() {
-
         return datas.size();
     }
+
 
 
     public interface OnItemClickListener{
