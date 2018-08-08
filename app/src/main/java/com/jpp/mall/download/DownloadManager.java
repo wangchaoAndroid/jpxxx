@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.jpp.mall.App;
+import com.jpp.mall.net.ResponseCallback;
 import com.jpp.mall.net.RetrofitFactory;
 import com.jpp.mall.utils.StreamUtil;
 
@@ -48,15 +49,15 @@ public class DownloadManager {
 
     /**
      * 获取更新信息
-     * @param versionName
+     * @param packageName
      * @param callback
      */
-//    public void upgradeInfo(String versionName, String versionCode , final ResponseCallback<ApkUpgradeInfo> callback){
-//        SampleApplicationLike.getNetService().getUpdatesInterface(versionName,versionCode)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(callback);
-//    }
+    public void upgradeInfo(String packageName, String appVersion , final ResponseCallback<ApkUpgradeInfo> callback){
+        RetrofitFactory.getInstance().getUpdatesInterface(packageName,appVersion)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(callback);
+    }
 
 
     /**

@@ -1,5 +1,6 @@
 package com.jpp.mall.acitivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -9,9 +10,13 @@ import android.os.Looper;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jpp.mall.App;
@@ -23,17 +28,23 @@ import com.jpp.mall.bean.HomeModel;
 import com.jpp.mall.bean.HomeResponse;
 import com.jpp.mall.bean.ShopInfoModel;
 import com.jpp.mall.bean.UnReadCount;
+import com.jpp.mall.download.ApkUpgradeInfo;
 import com.jpp.mall.download.Callback;
 import com.jpp.mall.download.DownloadManager;
 import com.jpp.mall.event.MsgEvent;
 import com.jpp.mall.net.BaseEntity;
 import com.jpp.mall.net.BaseObserver;
+import com.jpp.mall.net.ResponseCallback;
 import com.jpp.mall.net.RetrofitFactory;
+import com.jpp.mall.utils.AppConfig;
+import com.jpp.mall.utils.IAppUtil;
+import com.jpp.mall.utils.IDisplayUtil;
 import com.jpp.mall.utils.Logger;
 import com.jpp.mall.utils.MD5Util;
 import com.jpp.mall.utils.NotifyUtils;
 import com.jpp.mall.utils.SpUtils;
 import com.jpp.mall.utils.StackManager;
+import com.jpp.mall.view.citypickerview.style.citylist.Toast.ToastUtils;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 
@@ -53,7 +64,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClickListener, ViewPager.OnPageChangeListener, MainPagerAdapter.OnPicClickListener {
+public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClickListener, ViewPager.OnPageChangeListener, MainPagerAdapter.OnPicClickListener, View.OnClickListener {
     private static final String TAG = "MainAcitivty";
     @BindView(R.id.main_rv)
     RecyclerView mainRv;
@@ -162,6 +173,7 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
 
         //test();
         NotifyUtils.isNotificationEnabled(this);
+        upgrade();
     }
 
     @Override
@@ -417,4 +429,99 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
         });
     }
 
+
+
+    public void upgrade() {
+        DownloadManager.getInstance().upgradeInfo(IAppUtil.getVersionName(this), IAppUtil.getVersionCode(this), new ResponseCallback<ApkUpgradeInfo>() {
+            @Override
+            public void onSuccess(ApkUpgradeInfo value) {
+                Logger.e("value", "value" + value.toString());
+                if (value != null && value.code == 1 && !TextUtils.isEmpty(value.data)) {
+                    showDialog();
+                    mUpgradeInfo = value;
+                }else {
+                    if(value != null && !TextUtils.isEmpty(value.msg)){
+                        ToastUtils.showShortToast(MainAcitivty.this, value.msg + "");
+                    }
+
+                }
+            }
+            @Override
+            public void onFailture(String e) {
+            }
+        });
+    }
+
+    private AlertDialog mDialog;
+    private TextView mSure;
+    private TextView mCancel;
+    private ProgressBar mPsb;
+    private TextView mTip;
+    private ApkUpgradeInfo mUpgradeInfo;
+    public void showDialog() {
+        mDialog = new AlertDialog.Builder(this).create();
+        WindowManager.LayoutParams attributes = mDialog.getWindow().getAttributes();
+        attributes.width = (int) (IDisplayUtil.getScreenWidth(this) * 0.75);
+        mDialog.getWindow().setAttributes(attributes);
+        mDialog.show();
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_upgrade_dialog, null);
+
+        mSure = (TextView) dialogView.findViewById(R.id.sure_txt);
+        mTip = (TextView) dialogView.findViewById(R.id.tip_txt);
+        mCancel = (TextView) dialogView.findViewById(R.id.cancle_txt);
+        mPsb = (ProgressBar) dialogView.findViewById(R.id.psb);
+        mPsb.setVisibility(View.GONE);
+        mTip.setText(R.string.upgrade_tip);
+        mDialog.setContentView(dialogView);
+        mDialog.setCancelable(false);
+        mDialog.setCanceledOnTouchOutside(false);
+        mSure.setOnClickListener(this);
+        mCancel.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sure_txt:
+                if (mDialog.isShowing() && mUpgradeInfo != null) {
+                    String updateUrl = mUpgradeInfo.data;
+                    File dir = new File(AppConfig.download_Dir);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    mPsb.setVisibility(View.VISIBLE);
+                    mCancel.setVisibility(View.GONE);
+                    mSure.setVisibility(View.GONE);
+                    mTip.setText(R.string.upgrade_loading);
+                    File file = new File(AppConfig.download_Dir, "jpp.apk");
+                    DownloadManager.getInstance().download(updateUrl, file, new Callback() {
+                        @Override
+                        public void onProgress(int progress) {
+                            //下载的进度
+                            mPsb.setProgress(progress);
+                            if (progress == 100) {
+                                mDialog.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onFail(String msg) {
+                            if (mDialog.isShowing()) {
+                                mDialog.dismiss();
+                            }
+                            //  ILog.e("TAG", "111111");
+                            ToastUtils.showShortToast(MainAcitivty.this, getResources().getString(R.string.no_network_to_remind));
+                        }
+
+                    });
+                }
+                break;
+            case R.id.cancle_txt:
+                if (mDialog.isShowing()) {
+                    mDialog.dismiss();
+                }
+                break;
+        }
+
+    }
 }

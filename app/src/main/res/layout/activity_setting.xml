@@ -98,6 +98,20 @@
                 android:layout_height=".5dp"/>
 
             <TextView
+                android:id="@+id/upgrade"
+                android:text="版本更新"
+                android:textColor="@color/color_33"
+                android:textSize="@dimen/sp_16"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+            <View
+
+                android:layout_width="match_parent"
+                android:background="@color/color_33"
+                android:layout_height=".5dp"/>
+
+            <TextView
                 android:id="@+id/credibility_querry"
                 android:text="平台公信查询"
                 android:textSize="@dimen/sp_16"

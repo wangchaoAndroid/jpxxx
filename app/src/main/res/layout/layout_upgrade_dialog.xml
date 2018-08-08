@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:background="#fff"
+                android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tip_txt"
+        android:layout_width="wrap_content"
+        android:text="@string/upgrade_tip"
+        android:textSize="16dp"
+        android:padding="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/psb"
+        android:layout_below="@id/tip_txt"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+
+
+    <TextView
+        android:id="@+id/sure_txt"
+        android:padding="5dp"
+        android:layout_toLeftOf="@+id/cancle_txt"
+        android:layout_below="@+id/tip_txt"
+        android:layout_width="wrap_content"
+        android:textSize="14dp"
+        android:textColor="@color/color_f7c032"
+        android:text="@string/file_determine"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/cancle_txt"
+        android:layout_marginLeft="15dp"
+        android:textSize="14dp"
+        android:padding="5dp"
+        android:textColor="@color/color_f7c032"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tip_txt"
+        android:layout_width="wrap_content"
+        android:text="@string/cancel"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

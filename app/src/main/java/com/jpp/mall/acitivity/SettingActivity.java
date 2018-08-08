@@ -1,23 +1,38 @@
 package com.jpp.mall.acitivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jpp.mall.R;
 import com.jpp.mall.base.BaseActivity;
+import com.jpp.mall.download.ApkUpgradeInfo;
+import com.jpp.mall.download.Callback;
+import com.jpp.mall.download.DownloadManager;
+import com.jpp.mall.net.ResponseCallback;
+import com.jpp.mall.utils.AppConfig;
+import com.jpp.mall.utils.IAppUtil;
+import com.jpp.mall.utils.IDisplayUtil;
+import com.jpp.mall.utils.Logger;
 import com.jpp.mall.utils.SpUtils;
 import com.jpp.mall.utils.StackManager;
+import com.jpp.mall.view.citypickerview.style.citylist.Toast.ToastUtils;
 import com.tencent.android.tpush.XGPushManager;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.back)
@@ -36,8 +51,8 @@ public class SettingActivity extends BaseActivity {
     TextView logout;
     @BindView(R.id.next_look)
     TextView nextLook;
-
-
+    @BindView(R.id.upgrade)
+    TextView upgrade;
     @Override
     public int getLayoutId() {
         return R.layout.activity_setting;
@@ -70,6 +85,11 @@ public class SettingActivity extends BaseActivity {
     @OnClick(R.id.service_log)
     public void serviceLog(View view){
 
+    }
+
+    @OnClick(R.id.upgrade)
+    public void upgrade(View view){
+        upgrade();
     }
 
 
@@ -111,6 +131,100 @@ public class SettingActivity extends BaseActivity {
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.8);
         window.setAttributes(attributes);
+
+    }
+
+    public void upgrade() {
+        DownloadManager.getInstance().upgradeInfo(IAppUtil.getVersionName(this), IAppUtil.getVersionCode(this), new ResponseCallback<ApkUpgradeInfo>() {
+            @Override
+            public void onSuccess(ApkUpgradeInfo value) {
+                Logger.e("value", "value" + value.toString());
+                if (value != null && value.code == 1 && !TextUtils.isEmpty(value.data)) {
+                    showDialog();
+                    mUpgradeInfo = value;
+                }else {
+                    if(value != null && !TextUtils.isEmpty(value.msg)){
+                        ToastUtils.showShortToast(SettingActivity.this, value.msg + "");
+                    }
+
+                }
+            }
+            @Override
+            public void onFailture(String e) {
+            }
+        });
+    }
+
+    private AlertDialog mDialog;
+    private TextView mSure;
+    private TextView mCancel;
+    private ProgressBar mPsb;
+    private TextView mTip;
+    private ApkUpgradeInfo mUpgradeInfo;
+    public void showDialog() {
+        mDialog = new AlertDialog.Builder(this).create();
+        WindowManager.LayoutParams attributes = mDialog.getWindow().getAttributes();
+        attributes.width = (int) (IDisplayUtil.getScreenWidth(this) * 0.75);
+        mDialog.getWindow().setAttributes(attributes);
+        mDialog.show();
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_upgrade_dialog, null);
+
+        mSure = (TextView) dialogView.findViewById(R.id.sure_txt);
+        mTip = (TextView) dialogView.findViewById(R.id.tip_txt);
+        mCancel = (TextView) dialogView.findViewById(R.id.cancle_txt);
+        mPsb = (ProgressBar) dialogView.findViewById(R.id.psb);
+        mPsb.setVisibility(View.GONE);
+        mTip.setText(R.string.upgrade_tip);
+        mDialog.setContentView(dialogView);
+        mDialog.setCancelable(false);
+        mDialog.setCanceledOnTouchOutside(false);
+        mSure.setOnClickListener(this);
+        mCancel.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sure_txt:
+                if (mDialog.isShowing() && mUpgradeInfo != null) {
+                    String updateUrl = mUpgradeInfo.data;
+                    File dir = new File(AppConfig.download_Dir);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    mPsb.setVisibility(View.VISIBLE);
+                    mCancel.setVisibility(View.GONE);
+                    mSure.setVisibility(View.GONE);
+                    mTip.setText(R.string.upgrade_loading);
+                    File file = new File(AppConfig.download_Dir, "jpp.apk");
+                    DownloadManager.getInstance().download(updateUrl, file, new Callback() {
+                        @Override
+                        public void onProgress(int progress) {
+                            //下载的进度
+                            mPsb.setProgress(progress);
+                            if (progress == 100) {
+                                mDialog.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onFail(String msg) {
+                            if (mDialog.isShowing()) {
+                                mDialog.dismiss();
+                            }
+                            //  ILog.e("TAG", "111111");
+                            ToastUtils.showShortToast(SettingActivity.this, getResources().getString(R.string.no_network_to_remind));
+                        }
+
+                    });
+                }
+                break;
+            case R.id.cancle_txt:
+                if (mDialog.isShowing()) {
+                    mDialog.dismiss();
+                }
+                break;
+        }
 
     }
 }

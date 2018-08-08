@@ -23,6 +23,7 @@ import com.jpp.mall.bean.ShopInfoModel;
 import com.jpp.mall.bean.SureOrderModer;
 import com.jpp.mall.bean.UnReadCount;
 import com.jpp.mall.bean.WalletModel;
+import com.jpp.mall.download.ApkUpgradeInfo;
 
 import java.util.List;
 
@@ -399,4 +400,8 @@ public interface RetrofitServices {
 
     @GET("common/getExpressList")
     Observable<BaseEntity<List<ExpressModel>>> getExpressList();
+
+    @FormUrlEncoded
+    @POST("lygetUpdatesInterface")
+    Observable<ApkUpgradeInfo> getUpdatesInterface(@Field("packageName") String appVersions, @Field("appVersions")String appCode);
 }
