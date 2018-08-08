@@ -432,7 +432,7 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
 
 
     public void upgrade() {
-        DownloadManager.getInstance().upgradeInfo(IAppUtil.getVersionName(this), IAppUtil.getVersionCode(this), new ResponseCallback<ApkUpgradeInfo>() {
+        DownloadManager.getInstance().upgradeInfo(IAppUtil.getPackageName(this), IAppUtil.getVersionName(this), new ResponseCallback<ApkUpgradeInfo>() {
             @Override
             public void onSuccess(ApkUpgradeInfo value) {
                 Logger.e("value", "value" + value.toString());
