@@ -401,7 +401,7 @@ public interface RetrofitServices {
     @GET("common/getExpressList")
     Observable<BaseEntity<List<ExpressModel>>> getExpressList();
 
-    @FormUrlEncoded
-    @POST("version/getUpdatesInterface")
-    Observable<ApkUpgradeInfo> getUpdatesInterface(@Field("packageName") String appVersions, @Field("appVersions")String appCode);
+   // @FormUrlEncoded
+    @GET("version/getUpdatesInterface")
+    Observable<ApkUpgradeInfo> getUpdatesInterface(@Query("packageName") String appVersions, @Query("appVersions") String appCode);
 }
