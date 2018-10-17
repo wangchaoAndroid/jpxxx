@@ -63,4 +63,6 @@ public final class StackManager {
         Activity activity=activityStack.lastElement();
         return activity;
     }
+
+
 }

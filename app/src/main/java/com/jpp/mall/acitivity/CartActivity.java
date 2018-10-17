@@ -169,7 +169,8 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnNumChang
                             Logger.e(TAG, commonModel.toString());
                             if(sellerOrderAdapter != null && !datas.isEmpty()){
                                 datas.remove(datas.get(pos));
-                                sellerOrderAdapter.notifyItemRemoved(pos);
+                               // sellerOrderAdapter.notifyItemRemoved(pos);
+                                sellerOrderAdapter.notifyDataSetChanged();
                                 if(datas.isEmpty()){
                                     sumMoney = 0;
                                     totalRl.setVisibility(View.GONE);
@@ -180,7 +181,6 @@ public class CartActivity extends BaseActivity implements CartAdapter.OnNumChang
                         }else {
                             dimissLoadingDialog();
                         }
-
                     }
                 }, new Consumer<Throwable>() {
                     @Override

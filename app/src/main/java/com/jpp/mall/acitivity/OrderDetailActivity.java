@@ -160,6 +160,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailAdap
                             break;
                     }
                     getPayCharge(orderCode,token,payType);
+
                 }
             });
         }else if(type == 4){
@@ -249,6 +250,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailAdap
                     }
                 });
     }
+
 
     /**
      * @param context

@@ -1,5 +1,6 @@
 package com.jpp.mall.acitivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,6 +47,8 @@ import com.jpp.mall.utils.NotifyUtils;
 import com.jpp.mall.utils.SpUtils;
 import com.jpp.mall.utils.StackManager;
 import com.jpp.mall.view.citypickerview.style.citylist.Toast.ToastUtils;
+import com.pingplusplus.ui.PaymentHandler;
+import com.pingplusplus.ui.PingppUI;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 
@@ -52,7 +56,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +133,13 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
     }
     @Override
     public void initData() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                getPayData();
+//            }
+//        }).start();
+
         EventBus.getDefault().register(this);
         token = (String) SpUtils.get(this, "token","");
         regeistXG(token);
@@ -208,6 +224,51 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
                     }
                 });
     }
+
+    public void getPayData() {
+        String url = "http://120.79.13.43:8080/fh_battery/payInterface?token=39139054-47fd-4cc2-98c0-c1729599c22f&payType=200&productNumber=dawd4545&batteryId=23";
+        try {
+            HttpURLConnection urlConnection = (HttpURLConnection) new URL(url).openConnection();
+            urlConnection.connect();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(30000);
+            String msg = "";
+            int responseCode = urlConnection.getResponseCode();
+            if(responseCode == 200){
+                // 从流中读取响应信息
+                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                String line = null;
+                while ((line = reader.readLine()) != null) { // 循环从流中读取
+                    msg += line + "\n";
+                }
+                Log.e(TAG,"MSG" + msg);
+                reader.close(); // 关闭流
+                pay(this,msg);
+            }
+
+        } catch (IOException e) {
+        }
+    }
+
+    public void pay(Activity context , String data ){
+        //Pingpp.createPayment(context, data);
+
+        PingppUI.createPay(context, data, new PaymentHandler() {
+            @Override public void handlePaymentResult(Intent data) {
+                int code = data.getExtras().getInt("code");
+                String result = data.getExtras().getString("result");
+                Log.e(TAG,"code" + code + "----result" + result);
+//                if(code == 1){
+//                    details.remove(pos);
+//                    orderDetailAdapter.notifyItemRemoved(pos);
+//                }else {
+//                    ToastUtils.showShortToast(OrderDetailActivity.this,""+ result);
+//                }
+                //Log.e(TAG, "handlePaymentResult: "+ code + "---" + result );
+            }
+        });
+    }
+
 
 
 
@@ -427,6 +488,7 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
                 Logger.e("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });
+
     }
 
 
@@ -440,9 +502,9 @@ public class MainAcitivty extends BaseActivity implements MainAdapter.OnItemClic
                     showDialog();
                     mUpgradeInfo = value;
                 }else {
-                    if(value != null && !TextUtils.isEmpty(value.msg)){
-                        ToastUtils.showShortToast(MainAcitivty.this, value.msg + "");
-                    }
+//                    if(value != null && !TextUtils.isEmpty(value.msg)){
+//                        ToastUtils.showShortToast(MainAcitivty.this, value.msg + "");
+//                    }
 
                 }
             }
